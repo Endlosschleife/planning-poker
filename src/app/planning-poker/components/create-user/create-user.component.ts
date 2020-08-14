@@ -1,6 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from "../../services/user.service";
 
+class CreateUserForm {
+  constructor(public name: string) {
+  }
+}
+
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
@@ -11,13 +16,16 @@ export class CreateUserComponent implements OnInit {
   @Input()
   planningId: string;
 
-  constructor(private userService: UserService) { }
+  model = new CreateUserForm('');
+
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit(): void {
   }
 
-  create() {
-    this.userService.createUser(this.planningId, 'Torben');
+  submitForm() {
+    this.userService.createUser(this.planningId, this.model.name);
   }
 
 }

@@ -1,7 +1,10 @@
-<p>planning-poker works!</p>
+<div [ngClass]="{'blurred': !(isMember$ | async)}">
+  <p>planning-poker works!</p>
 
-<pre>
-  {{ users$ | async | json }}
-</pre>
+  <pre>
+    {{ users$ | async | json }}
+  </pre>
+
+</div>
 
 <app-create-user *ngIf="(isMember$ | async) === false" [planningId]="planningId"></app-create-user>

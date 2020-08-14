@@ -5,6 +5,7 @@ import { InitPageComponent } from './components/init-page/init-page.component';
 import { PlanningPokerComponent } from './planning-poker.component';
 import { UserService } from "./services/user.service";
 import { CreateUserComponent } from "./components/create-user/create-user.component";
+import { FormsModule } from "@angular/forms";
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule
   ],
   providers: [
     UserService
