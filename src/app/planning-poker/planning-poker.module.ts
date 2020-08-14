@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterModule, Routes} from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 import { InitPageComponent } from './components/init-page/init-page.component';
-import { PokerPageComponent } from './components/poker-page/poker-page.component';
+import { PlanningPokerComponent } from './planning-poker.component';
+import { UserService } from "./services/user.service";
+import { CreateUserComponent } from "./components/create-user/create-user.component";
 
 const routes: Routes = [
   {
@@ -11,15 +13,23 @@ const routes: Routes = [
     component: InitPageComponent
   }, {
     path: ':id',
-    component: PokerPageComponent
+    component: PlanningPokerComponent
   }
 ];
 
 @NgModule({
-  declarations: [InitPageComponent, PokerPageComponent],
+  declarations: [
+    InitPageComponent,
+    PlanningPokerComponent,
+    CreateUserComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes)
+  ],
+  providers: [
+    UserService
   ]
 })
-export class PlanningPokerModule { }
+export class PlanningPokerModule {
+}

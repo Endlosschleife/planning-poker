@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "planning-poker-79526"
+  },
+  "targets": {
+    "planning-poker-79526": {
+      "hosting": {
+        "planning-poker": [
+          "planning-poker-79526"
+        ]
+      }
+    }
   }
 }

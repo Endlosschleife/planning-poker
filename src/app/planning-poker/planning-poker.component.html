@@ -1,0 +1,7 @@
+<p>planning-poker works!</p>
+
+<pre>
+  {{ users$ | async | json }}
+</pre>
+
+<app-create-user *ngIf="(isMember$ | async) === false" [planningId]="planningId"></app-create-user>
