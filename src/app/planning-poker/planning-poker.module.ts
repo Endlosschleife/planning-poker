@@ -6,6 +6,9 @@ import { PlanningPokerComponent } from './planning-poker.component';
 import { UserService } from "./services/user.service";
 import { CreateUserComponent } from "./components/create-user/create-user.component";
 import { FormsModule } from "@angular/forms";
+import { PokerCardComponent } from './components/poker-card/poker-card.component';
+import { UserTileComponent } from './components/user-tile/user-tile.component';
+import { CardSelectionComponent } from './components/card-selection/card-selection.component';
 
 const routes: Routes = [
   {
@@ -22,7 +25,10 @@ const routes: Routes = [
   declarations: [
     InitPageComponent,
     PlanningPokerComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    PokerCardComponent,
+    UserTileComponent,
+    CardSelectionComponent
   ],
   imports: [
     CommonModule,

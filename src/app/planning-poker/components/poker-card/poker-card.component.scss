@@ -1,0 +1,14 @@
+.poker-card {
+  line-height: 100px;
+  width: 80px;
+  text-align: center;
+  color: #333;
+  border: 1px solid #fff;
+  display: inline-block;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.3);
+
+  > span {
+    font-size: 24px;
+  }
+}

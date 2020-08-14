@@ -1,10 +1,19 @@
-<div [ngClass]="{'blurred': !(isMember$ | async)}">
-  <p>planning-poker works!</p>
-
-  <pre>
-    {{ users$ | async | json }}
-  </pre>
-
-</div>
-
 <app-create-user *ngIf="(isMember$ | async) === false" [planningId]="planningId"></app-create-user>
+
+<div [ngClass]="{'blurred': !(isMember$ | async)}"
+     class="hero is-fullheight is-primary is-bold">
+  <div class="hero-body">
+    <div class="container">
+
+      <div *ngFor="let user of users$ | async"
+           class="is-inline-block mx-2">
+        <app-user-tile [user]="user"></app-user-tile>
+      </div>
+
+      <div class="mx-2 mt-5">
+        <app-card-selection></app-card-selection>
+      </div>
+
+    </div>
+  </div>
+</div>

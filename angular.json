@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@mdi/font/css/materialdesignicons.css",
               "src/styles.scss"
             ],
             "scripts": []

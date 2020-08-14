@@ -1,0 +1,9 @@
+<div class="poker-card">
+
+  <span *ngIf="!!card.value?.text">
+    {{ card.value.text }}
+  </span>
+
+  <span *ngIf="!!card.value?.icon" class="mdi" [ngClass]="card.value.icon"></span>
+
+</div>
