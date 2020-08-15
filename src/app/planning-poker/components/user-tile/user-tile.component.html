@@ -1,2 +1,4 @@
-
-<h2>{{ user.name }}</h2>
+<div>
+  <h2>{{ user.name }}</h2>
+  <app-poker-card *ngIf="userPokerCard" [card]="userPokerCard"></app-poker-card>
+</div>

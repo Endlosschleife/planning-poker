@@ -5,14 +5,15 @@
   <div class="hero-body">
     <div class="container">
 
-      {{ selectedCard$ | async | json }}
-
       <div *ngFor="let user of users$ | async"
            class="is-inline-block mx-2">
-        <app-user-tile [user]="user"></app-user-tile>
+        <app-user-tile [user]="user" [userPokerCard]="getUserPokerCard(user)"></app-user-tile>
       </div>
 
+      <hr/>
+
       <div class="mx-2 mt-5">
+        <h3 class="title">Select your Card</h3>
         <app-card-selection (selectedCardChanged)="selectedCardChanged($event)"
                             [selectedCard]="selectedCard$ | async"></app-card-selection>
       </div>

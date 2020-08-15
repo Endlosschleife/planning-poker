@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from "../../models/user.model";
+import { PokerCardEnum } from "../../models/poker-card.enum";
 
 @Component({
   selector: 'app-user-tile',
@@ -10,6 +11,9 @@ export class UserTileComponent implements OnInit {
 
   @Input()
   user: User;
+
+  @Input()
+  userPokerCard: PokerCardEnum;
 
   constructor() { }
 

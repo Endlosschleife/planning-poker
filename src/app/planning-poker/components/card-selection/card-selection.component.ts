@@ -24,8 +24,12 @@ export class CardSelectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectPokerCard(pokerCard: PokerCardEnum) {
-    this.selectedCardChanged.emit(pokerCard);
+  cardClicked(pokerCard: PokerCardEnum) {
+    if(this.isCardSelected(pokerCard)) {
+      this.selectedCardChanged.emit(null); // deselect
+    } else {
+      this.selectedCardChanged.emit(pokerCard);
+    }
   }
 
   isCardSelected(pokerCard: PokerCardEnum) {

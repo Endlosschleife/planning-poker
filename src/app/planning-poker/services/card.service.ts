@@ -14,12 +14,20 @@ export class CardService {
   }
 
   selectCard(planningId: string, card: PokerCardEnum, userId: string) {
-    var selectedCard = new SelectedCard(userId, card.getKey());
-    this.fireStore.collection('plannings')
-      .doc(planningId)
-      .collection<SelectedCard>('cards')
-      .doc(userId)
-      .set({...selectedCard})
+    if (!card) { // deselect
+      this.fireStore.collection('plannings')
+        .doc(planningId)
+        .collection('cards')
+        .doc(userId)
+        .delete();
+    } else { // select
+      var selectedCard = new SelectedCard(userId, card.getKey());
+      this.fireStore.collection('plannings')
+        .doc(planningId)
+        .collection<SelectedCard>('cards')
+        .doc(userId)
+        .set({...selectedCard});
+    }
   }
 
   getSelectedCard(planningId: string, userId: string): Observable<SelectedCard> {
@@ -29,7 +37,14 @@ export class CardService {
       .valueChanges()
       .pipe(
         map(cards => cards.find(card => card.userId === userId))
-      )
+      );
+  }
+
+  getSelectedPokerCards(planningId: string): Observable<SelectedCard[]> {
+    return this.fireStore.collection('plannings')
+      .doc(planningId)
+      .collection<SelectedCard>('cards')
+      .valueChanges();
   }
 
 }

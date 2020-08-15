@@ -6,7 +6,7 @@ import { UserService } from "./services/user.service";
 import { PokerCardEnum } from "./models/poker-card.enum";
 import { CardService } from "./services/card.service";
 import { SelectedCard } from "./models/selected-card.model";
-import { filter, switchMap } from "rxjs/operators";
+import { filter, flatMap, map, switchMap } from "rxjs/operators";
 
 @Component({
   selector: 'app-planning-poker',
@@ -20,6 +20,7 @@ export class PlanningPokerComponent implements OnInit {
   isMember$: Observable<boolean>;
   currentUser?: User;
   selectedCard$: Observable<SelectedCard>;
+  userPokerCards: SelectedCard[] = [];
 
   constructor(private userService: UserService,
               private cardService: CardService,
@@ -36,11 +37,23 @@ export class PlanningPokerComponent implements OnInit {
       switchMap(user => this.cardService.getSelectedCard(this.planningId, user.id))
     );
 
-    this.userService.getCurrentUser(this.planningId).subscribe(user => this.currentUser = user);
+    this.userService.getCurrentUser(this.planningId)
+      .subscribe(user => this.currentUser = user);
+
+    this.cardService.getSelectedPokerCards(this.planningId)
+      .subscribe(cards => this.userPokerCards = cards);
   }
 
   selectedCardChanged(pokerCard: PokerCardEnum) {
     this.cardService.selectCard(this.planningId, pokerCard, this.currentUser.id);
+  }
+
+  getUserPokerCard(user: User): PokerCardEnum {
+    var card = this.userPokerCards.find(card => card.userId === user.id);
+    if(!card) {
+      return;
+    }
+    return PokerCardEnum[card.card];
   }
 
 }
