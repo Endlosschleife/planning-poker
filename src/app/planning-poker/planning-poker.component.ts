@@ -6,7 +6,7 @@ import { UserService } from "./services/user.service";
 import { PokerCardEnum } from "./models/poker-card.enum";
 import { CardService } from "./services/card.service";
 import { SelectedCard } from "./models/selected-card.model";
-import { switchMap } from "rxjs/operators";
+import { filter, switchMap } from "rxjs/operators";
 
 @Component({
   selector: 'app-planning-poker',
@@ -32,6 +32,7 @@ export class PlanningPokerComponent implements OnInit {
     this.isMember$ = this.userService.isMember(this.planningId);
 
     this.selectedCard$ = this.userService.getCurrentUser(this.planningId).pipe(
+      filter(user => !!user),
       switchMap(user => this.cardService.getSelectedCard(this.planningId, user.id))
     );
 
