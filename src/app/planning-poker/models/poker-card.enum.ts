@@ -14,7 +14,7 @@ export class PokerCardEnum {
   static readonly EIGHT = new PokerCardEnum('EIGHT', {text: '8'});
   static readonly THIRTEEN = new PokerCardEnum('THIRTEEN', {text: '13'});
   static readonly TWENTY = new PokerCardEnum('TWENTY', {text: '20'});
-  static readonly FORTY = new PokerCardEnum('FORTY', {text: '40'});
+  static readonly FOURTY = new PokerCardEnum('FOURTY', {text: '40'});
   static readonly HUNDRED = new PokerCardEnum('HUNDRED', {text: '100'});
   static readonly UNKNOWN = new PokerCardEnum('UNKNOWN', {icon: 'mdi-account-question'});
   static readonly COFFEE = new PokerCardEnum('COFFEE', {icon: 'mdi-coffee'});
@@ -22,7 +22,11 @@ export class PokerCardEnum {
   private constructor(private readonly key, public readonly value: PokerCardValue) {
   }
 
-  toString() {
+  toString(): string {
+    return this.key;
+  }
+
+  getKey(): string {
     return this.key;
   }
 

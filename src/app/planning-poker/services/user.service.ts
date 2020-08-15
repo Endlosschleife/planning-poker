@@ -23,6 +23,15 @@ export class UserService {
     )
   }
 
+  getCurrentUser(planningId: string): Observable<User> {
+    return this.getUsers(planningId).pipe(
+      map(users => users
+        .filter(() => !!this.getUserFromStorage(planningId))
+        .find(user => user.id === this.getUserFromStorage(planningId).id)
+      )
+    )
+  }
+
   private getUserFromStorage(planningId: string): User {
     var storage = localStorage.getItem(planningId);
     if (!storage) {

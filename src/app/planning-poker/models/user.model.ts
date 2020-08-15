@@ -1,7 +1,7 @@
 export class User {
 
-  constructor(public id: String,
-              public name: String) {
+  constructor(public id: string,
+              public name: string) {
   }
 
 }

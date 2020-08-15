@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PokerCardEnum } from "../../models/poker-card.enum";
+import { SelectedCard } from "../../models/selected-card.model";
 
 @Component({
   selector: 'app-card-selection',
@@ -8,6 +9,12 @@ import { PokerCardEnum } from "../../models/poker-card.enum";
 })
 export class CardSelectionComponent implements OnInit {
 
+  @Input()
+  selectedCard: SelectedCard;
+
+  @Output()
+  selectedCardChanged = new EventEmitter<PokerCardEnum>();
+
   pokerCardEnum = PokerCardEnum;
   cards = Object.keys(PokerCardEnum);
 
@@ -15,6 +22,14 @@ export class CardSelectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  selectPokerCard(pokerCard: PokerCardEnum) {
+    this.selectedCardChanged.emit(pokerCard);
+  }
+
+  isCardSelected(pokerCard: PokerCardEnum) {
+    return pokerCard.getKey() === this.selectedCard?.card;
   }
 
 }
