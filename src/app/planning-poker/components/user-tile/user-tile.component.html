@@ -1,16 +1,18 @@
-<div>
-  <h2>{{ user.name }}</h2>
+<div class="user-tile">
 
-  <!-- revealed -->
-  <app-poker-card *ngIf="reveal && userPokerCard" [card]="userPokerCard"></app-poker-card>
+  <div class="selection">
+    <!-- revealed -->
+    <app-poker-card *ngIf="reveal && userPokerCard" [card]="userPokerCard"></app-poker-card>
 
-  <!-- hidden -->
-  <div *ngIf="!reveal">
-    hidden
-
-    <div *ngIf="!!userPokerCard">
-      selected
+    <!-- hidden -->
+    <div class="pending" *ngIf="!reveal">
+      <i *ngIf="!!userPokerCard" class="mdi mdi-check-circle"></i>
+      <i *ngIf="!userPokerCard" class="mdi mdi-timer-sand"></i>
     </div>
+  </div>
+
+  <div class="username">
+    <span class="tag is-light is-rounded ">{{ user.name }}</span>
   </div>
 
 </div>

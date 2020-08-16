@@ -6,7 +6,7 @@
     <div class="container">
 
       <div *ngFor="let user of users$ | async"
-           class="is-inline-block mx-2">
+           class="is-inline-block mx-3">
         <app-user-tile [user]="user" [userPokerCard]="getUserPokerCard(user)" [reveal]="isRevealed$ | async"></app-user-tile>
       </div>
 

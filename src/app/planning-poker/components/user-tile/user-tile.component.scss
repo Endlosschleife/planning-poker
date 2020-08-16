@@ -1,0 +1,29 @@
+.user-tile {
+  display: flex;
+  flex-direction: column;
+  width: 90px;
+  align-items: center;
+
+  .selection {
+    flex-basis: 120px;
+    display: flex;
+
+    .pending {
+      align-self: center;
+      font-size: 42px;
+      height: 100px;
+      width: 80px;
+      text-align: center;
+      background: rgba(255, 255,255, 0.4);
+      border: 1px solid #444;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .username {
+    flex-grow: 0;
+  }
+}
