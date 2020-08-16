@@ -49,7 +49,8 @@ export class UserService {
     this.fireStore.collection('plannings')
       .doc(planningId)
       .collection<User>('users')
-      .add(user)
+      .doc(user.id)
+      .set({...user})
   }
 
   getUsers(planningId: string): Observable<User[]> {
@@ -57,6 +58,14 @@ export class UserService {
       .doc(planningId)
       .collection<User>('users')
       .valueChanges();
+  }
+
+  removeUser(planningId: string, userId: string) {
+    this.fireStore.collection('plannings')
+      .doc(planningId)
+      .collection('users')
+      .doc(userId)
+      .delete();
   }
 
 }

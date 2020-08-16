@@ -7,7 +7,8 @@
 
       <div *ngFor="let user of users$ | async"
            class="is-inline-block mx-3">
-        <app-user-tile [user]="user" [userPokerCard]="getUserPokerCard(user)" [reveal]="isRevealed$ | async"></app-user-tile>
+        <app-user-tile [user]="user" [userPokerCard]="getUserPokerCard(user)"
+                       [reveal]="isRevealed$ | async" (removeUserClicked)="removeUser($event)"></app-user-tile>
       </div>
 
       <hr/>

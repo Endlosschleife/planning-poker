@@ -24,6 +24,8 @@
   }
 
   .username {
-    flex-grow: 0;
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

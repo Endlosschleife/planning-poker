@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from "../../models/user.model";
 import { PokerCardEnum } from "../../models/poker-card.enum";
 
@@ -18,9 +18,16 @@ export class UserTileComponent implements OnInit {
   @Input()
   reveal: boolean;
 
+  @Output()
+  removeUserClicked = new EventEmitter<User>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  removeUser() {
+    this.removeUserClicked.emit(this.user);
   }
 
 }

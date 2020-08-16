@@ -11,8 +11,9 @@
     </div>
   </div>
 
-  <div class="username">
-    <span class="tag is-light is-rounded ">{{ user.name }}</span>
-  </div>
+    <div class="tags has-addons">
+      <div class="tag username">{{ user.name }}</div>
+      <a class="tag is-delete" (click)="removeUser()"></a>
+    </div>
 
 </div>
