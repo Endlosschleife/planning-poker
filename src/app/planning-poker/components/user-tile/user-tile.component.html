@@ -1,4 +1,16 @@
 <div>
   <h2>{{ user.name }}</h2>
-  <app-poker-card *ngIf="userPokerCard" [card]="userPokerCard"></app-poker-card>
+
+  <!-- revealed -->
+  <app-poker-card *ngIf="reveal && userPokerCard" [card]="userPokerCard"></app-poker-card>
+
+  <!-- hidden -->
+  <div *ngIf="!reveal">
+    hidden
+
+    <div *ngIf="!!userPokerCard">
+      selected
+    </div>
+  </div>
+
 </div>

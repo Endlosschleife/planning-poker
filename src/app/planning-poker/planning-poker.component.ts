@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { Observable } from "rxjs";
+import { combineLatest, Observable, zip } from "rxjs";
 import { User } from "./models/user.model";
 import { UserService } from "./services/user.service";
 import { PokerCardEnum } from "./models/poker-card.enum";
 import { CardService } from "./services/card.service";
 import { SelectedCard } from "./models/selected-card.model";
-import { filter, flatMap, map, switchMap } from "rxjs/operators";
+import { filter, flatMap, map, switchMap, tap, toArray } from "rxjs/operators";
 
 @Component({
   selector: 'app-planning-poker',
@@ -21,6 +21,7 @@ export class PlanningPokerComponent implements OnInit {
   currentUser?: User;
   selectedCard$: Observable<SelectedCard>;
   userPokerCards: SelectedCard[] = [];
+  isRevealed$: Observable<boolean>;
 
   constructor(private userService: UserService,
               private cardService: CardService,
@@ -42,6 +43,13 @@ export class PlanningPokerComponent implements OnInit {
 
     this.cardService.getSelectedPokerCards(this.planningId)
       .subscribe(cards => this.userPokerCards = cards);
+
+    this.isRevealed$ = combineLatest([this.userService.getUsers(this.planningId), this.cardService.getSelectedPokerCards(this.planningId)]).pipe(
+      map(([users, selectedCards]) => users
+        .filter(user => !selectedCards.find(selectedCard => selectedCard.userId === user.id))
+      ),
+      map(usersWithNoSelection => usersWithNoSelection.length === 0)
+    );
   }
 
   selectedCardChanged(pokerCard: PokerCardEnum) {
@@ -50,10 +58,14 @@ export class PlanningPokerComponent implements OnInit {
 
   getUserPokerCard(user: User): PokerCardEnum {
     var card = this.userPokerCards.find(card => card.userId === user.id);
-    if(!card) {
+    if (!card) {
       return;
     }
     return PokerCardEnum[card.card];
+  }
+
+  resetCards() {
+    this.cardService.deleteSelectedCards(this.planningId);
   }
 
 }

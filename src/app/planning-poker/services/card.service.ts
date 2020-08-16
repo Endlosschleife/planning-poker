@@ -47,4 +47,22 @@ export class CardService {
       .valueChanges();
   }
 
+  deleteSelectedCards(planningId: string) {
+    this.fireStore.collection('plannings')
+      .doc(planningId)
+      .collection<SelectedCard>('cards')
+      .get()
+      .toPromise()
+      // .then(a => console.log(a))
+      .then(docs => {
+        docs.docs.forEach(doc => this.fireStore
+          .collection('plannings')
+          .doc(planningId)
+          .collection('cards')
+          .doc(doc.id)
+          .delete()
+        )
+      })
+  }
+
 }

@@ -15,6 +15,9 @@ export class UserTileComponent implements OnInit {
   @Input()
   userPokerCard: PokerCardEnum;
 
+  @Input()
+  reveal: boolean;
+
   constructor() { }
 
   ngOnInit(): void {
