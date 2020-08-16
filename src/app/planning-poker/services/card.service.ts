@@ -53,7 +53,6 @@ export class CardService {
       .collection<SelectedCard>('cards')
       .get()
       .toPromise()
-      // .then(a => console.log(a))
       .then(docs => {
         docs.docs.forEach(doc => this.fireStore
           .collection('plannings')

@@ -69,7 +69,6 @@ export class PlanningPokerComponent implements OnInit {
   }
 
   removeUser(user: User) {
-    console.log('remove', user);
     this.userService.removeUser(this.planningId, user.id);
   }
 
