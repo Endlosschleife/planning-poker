@@ -21,3 +21,9 @@
     background: rgba(255, 255, 255, 0.5);
   }
 }
+
+:host(.opaque) {
+  .poker-card {
+    background: rgba(255, 255, 255, 0.8);
+  }
+}

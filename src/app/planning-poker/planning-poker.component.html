@@ -1,30 +1,31 @@
 <app-create-user *ngIf="(isMember$ | async) === false" [planningId]="planningId"></app-create-user>
 
 <div [ngClass]="{'blurred': !(isMember$ | async)}"
-     class="hero is-fullheight is-primary is-bold">
-  <div class="hero-body">
-    <div class="container">
+     class="planning-poker">
+  <div class="content">
 
+    <div class="user-cards-list">
       <div *ngFor="let user of users$ | async"
            class="is-inline-block mx-3">
         <app-user-tile [user]="user" [userPokerCard]="getUserPokerCard(user)"
                        [reveal]="isRevealed$ | async" (removeUserClicked)="removeUser($event)"></app-user-tile>
       </div>
+    </div>
 
-      <hr/>
-
+    <div class="has-text-centered">
       <!-- select a card -->
       <div class="mx-2 mt-5" *ngIf="!(isRevealed$ | async)">
-        <h3 class="title">Select your Card</h3>
+        <h3 class="title has-text-light">Select your Card</h3>
         <app-card-selection (selectedCardChanged)="selectedCardChanged($event)"
                             [selectedCard]="selectedCard$ | async"></app-card-selection>
       </div>
 
       <!-- reset -->
-      <div *ngIf="isRevealed$ | async">
-        <button type="button" (click)="resetCards()">Reset</button>
+      <div *ngIf="isRevealed$ | async" class="mt-5">
+        <button type="button" class="button is-primay is-large" (click)="resetCards()">Reset</button>
       </div>
-
     </div>
+
+
   </div>
 </div>
