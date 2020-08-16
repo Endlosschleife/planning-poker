@@ -1,6 +1,7 @@
 {
   "hosting": [
     {
+      "target": "planning-poker",
       "public": "dist/planning-poker",
       "ignore": [
         "firebase.json",
