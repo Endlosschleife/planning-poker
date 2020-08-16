@@ -1,7 +1,7 @@
 
 <ng-container  *ngFor="let card of cards">
 
-  <app-poker-card [card]="pokerCardEnum[card]" class="mr-2" (click)="cardClicked(pokerCardEnum[card])"
+  <app-poker-card [card]="pokerCardEnum[card]" class="mr-2 hoverable" (click)="cardClicked(pokerCardEnum[card])"
                   [ngClass]="{'selected': isCardSelected(pokerCardEnum[card])}"></app-poker-card>
 
 </ng-container>

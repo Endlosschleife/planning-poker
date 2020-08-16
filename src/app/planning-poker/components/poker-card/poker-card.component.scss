@@ -6,7 +6,7 @@
   border: 1px solid #444;
   display: inline-block;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.8);
 
   > span {
     font-size: 24px;
@@ -18,12 +18,18 @@
   .poker-card {
     border-color: #fff;
     color: #333;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 1);
   }
 }
 
 :host(.opaque) {
   .poker-card {
     background: rgba(255, 255, 255, 0.8);
+  }
+}
+
+:host(.hoverable) {
+  .poker-card:hover {
+    background: rgba(255, 255, 255, 1);
   }
 }
