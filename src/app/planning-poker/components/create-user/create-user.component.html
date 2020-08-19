@@ -19,9 +19,11 @@
                            [(ngModel)]="model.name" name="name">
                   </div>
                 </div>
-                <div class="control">
 
-                </div>
+                <label class="checkbox">
+                  <input type="checkbox" [(ngModel)]="model.isObserver" name="isObserver">
+                  I'm an observer
+                </label>
 
               </div>
               <footer class="card-footer">

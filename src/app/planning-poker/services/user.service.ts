@@ -40,10 +40,11 @@ export class UserService {
     return JSON.parse(storage);
   }
 
-  createUser(planningId: string, name: string) {
+  createUser(planningId: string, name: string, isObserver: boolean) {
     var user: User = {
       id: uuid.v4(),
-      name: name
+      name: name,
+      isObserver: isObserver
     }
     localStorage.setItem(planningId, JSON.stringify(user));
     this.fireStore.collection('plannings')
@@ -66,6 +67,14 @@ export class UserService {
       .collection('users')
       .doc(userId)
       .delete();
+  }
+
+  setObserver(planningId: string, userId: string, isObserver: boolean) {
+    this.fireStore.collection('plannings')
+      .doc(planningId)
+      .collection('users')
+      .doc(userId)
+      .update({isObserver})
   }
 
 }

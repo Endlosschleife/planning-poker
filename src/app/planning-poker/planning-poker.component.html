@@ -4,15 +4,15 @@
      class="planning-poker">
   <div class="content">
 
-    <div *ngIf="(users$ | async)?.length > 0" class="user-cards-list box">
-      <div *ngFor="let user of users$ | async"
+    <div *ngIf="(players$ | async)?.length > 0" class="user-cards-list box">
+      <div *ngFor="let user of players$ | async"
            class="is-inline-block mx-3">
         <app-user-tile [user]="user" [userPokerCard]="getUserPokerCard(user)"
                        [reveal]="isRevealed$ | async" (removeUserClicked)="removeUser($event)"></app-user-tile>
       </div>
     </div>
 
-    <div class="has-text-centered">
+    <div class="has-text-centered" *ngIf="!currentUser?.isObserver">
       <!-- select a card -->
       <div class="mx-2 mt-5" *ngIf="!(isRevealed$ | async)">
         <h3 class="title has-text-light">Select your Card</h3>
@@ -26,6 +26,10 @@
       </div>
     </div>
 
+    <!-- observer control -->
+    <div *ngIf="currentUser?.isObserver">
+      <app-observer-view [planningId]="planningId" [user]="currentUser"></app-observer-view>
+    </div>
 
   </div>
 </div>

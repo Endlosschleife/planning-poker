@@ -17,6 +17,8 @@ export class PlanningPokerComponent implements OnInit {
 
   planningId: string;
   users$: Observable<User[]>;
+  players$: Observable<User[]>;
+  observers$: Observable<User[]>;
   isMember$: Observable<boolean>;
   currentUser?: User;
   selectedCard$: Observable<SelectedCard>;
@@ -30,7 +32,15 @@ export class PlanningPokerComponent implements OnInit {
 
   ngOnInit(): void {
     this.planningId = this.activatedRoute.snapshot.params['id'];
+
     this.users$ = this.userService.getUsers(this.planningId);
+    this.players$ = this.users$.pipe(
+      map(users => users.filter(user => !user.isObserver))
+    );
+    this.observers$ = this.users$.pipe(
+      map(users => users.filter(user => user.isObserver))
+    );
+
     this.isMember$ = this.userService.isMember(this.planningId);
 
     this.selectedCard$ = this.userService.getCurrentUser(this.planningId).pipe(
@@ -44,7 +54,7 @@ export class PlanningPokerComponent implements OnInit {
     this.cardService.getSelectedPokerCards(this.planningId)
       .subscribe(cards => this.userPokerCards = cards);
 
-    this.isRevealed$ = combineLatest([this.userService.getUsers(this.planningId), this.cardService.getSelectedPokerCards(this.planningId)]).pipe(
+    this.isRevealed$ = combineLatest([this.players$, this.cardService.getSelectedPokerCards(this.planningId)]).pipe(
       map(([users, selectedCards]) => users
         .filter(user => !selectedCards.find(selectedCard => selectedCard.userId === user.id))
       ),
@@ -69,7 +79,7 @@ export class PlanningPokerComponent implements OnInit {
   }
 
   removeUser(user: User) {
-    this.userService.removeUser(this.planningId, user.id);
+    this.userService.setObserver(this.planningId, user.id, true);
   }
 
 }
