@@ -1,4 +1,4 @@
-<div class="poker-card">
+<div class="poker-card" [ngStyle]="{color: card?.color}">
 
   <span *ngIf="!!card?.value.text">
     {{ card.value.text }}
