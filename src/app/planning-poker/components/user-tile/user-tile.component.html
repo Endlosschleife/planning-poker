@@ -12,9 +12,11 @@
     </div>
   </div>
 
-  <div class="tags has-addons">
-    <div class="tag is-dark username">{{ user.name }}</div>
-    <a class="tag is-delete" (click)="removeUser()"></a>
+  <div class="tags">
+    <div class="tag is-dark username">
+      <span class="truncate">{{ user.name }}</span>
+      <button class="btn-remove-user delete" (click)="removeUser()"></button>
+    </div>
   </div>
 
 </div>
