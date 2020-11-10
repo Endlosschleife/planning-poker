@@ -6,12 +6,28 @@
   height: 100vh;
   width: 100vw;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   background-image: linear-gradient(120deg, #134e5e 0%, #71b280 100%);
+
+  .header {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .main {
+    display: flex;
+    align-items: center;
+    height: 500px;
+  }
+
+  .bottom {
+    flex-grow: 1;
+  }
 
   .content {
     width: 100%;
-    height: 500px;
+
   }
 
   .user-cards-list {

@@ -10,6 +10,7 @@ import { PokerCardComponent } from './components/poker-card/poker-card.component
 import { UserTileComponent } from './components/user-tile/user-tile.component';
 import { CardSelectionComponent } from './components/card-selection/card-selection.component';
 import { ObserverViewComponent } from './components/observer-view/observer-view.component';
+import { ObserverListComponent } from './components/observer-list/observer-list.component';
 
 const routes: Routes = [
   {
@@ -30,7 +31,8 @@ const routes: Routes = [
     PokerCardComponent,
     UserTileComponent,
     CardSelectionComponent,
-    ObserverViewComponent
+    ObserverViewComponent,
+    ObserverListComponent
   ],
   imports: [
     CommonModule,

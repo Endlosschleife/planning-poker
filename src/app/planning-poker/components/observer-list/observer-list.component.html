@@ -1,0 +1,4 @@
+<div class="tags has-addons" *ngIf="(observers$ | async)?.length > 0">
+  <span class="tag is-dark">Observers:</span>
+  <span class="tag is-light" *ngFor="let user of observers$ | async">{{ user.name }}</span>
+</div>
